@@ -8,8 +8,9 @@ import kotlin.reflect.KClass
 @Retention(AnnotationRetention.RUNTIME)
 @Constraint(validatedBy = [MaxThreeMonthsValidator::class])
 @MustBeDocumented
-annotation class MaxThreeMonths(
-    val message: String = "the maximum starting date is 3 months in advance.",
+annotation class MaxMonths(
     val groups: Array<KClass<Any>> = [],
-    val payload: Array<KClass<Payload>> = []
+    val payload: Array<KClass<Payload>> = [],
+    val value: Int,
+    val message: String = "The starting date is wrong, please verify if the date is in the max range.",
 )
