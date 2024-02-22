@@ -1,7 +1,6 @@
 package me.dio.credit.application.system.dto
 
-import com.example.customvalidator.validation.MaxThreeMonths
-import jakarta.validation.constraints.Future
+import com.example.customvalidator.validation.MaxMonths
 import jakarta.validation.constraints.FutureOrPresent
 import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.Min
@@ -13,7 +12,7 @@ import java.time.LocalDate
 
 data class CreditDto(
     @field:NotNull(message = "Invalid input") val creditValue: BigDecimal,
-    @field:FutureOrPresent @field:MaxThreeMonths val dayOfFirstInstallment: LocalDate,
+    @field:FutureOrPresent(message = "The date of first Installment must be on present or future") @field:MaxMonths(value = 3) val dayOfFirstInstallment: LocalDate,
     @field:Min(value = 1) @field:Max(value = 48) val numberOfInstallments: Int,
     @field:NotNull(message = "Invalid input") val customerId: Long
 ) {
