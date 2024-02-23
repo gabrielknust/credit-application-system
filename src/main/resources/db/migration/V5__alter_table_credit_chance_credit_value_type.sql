@@ -1,0 +1,1 @@
+ALTER TABLE credit ALTER COLUMN credit_value bigint

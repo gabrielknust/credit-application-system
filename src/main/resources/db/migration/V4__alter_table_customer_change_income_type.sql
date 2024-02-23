@@ -1,0 +1,1 @@
+ALTER TABLE customer ALTER COLUMN income bigint
