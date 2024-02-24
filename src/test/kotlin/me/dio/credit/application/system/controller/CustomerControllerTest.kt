@@ -63,7 +63,7 @@ class CustomerControllerTest {
             .andExpect(MockMvcResultMatchers.jsonPath("$.cpf").value(customerDto.cpf))
             .andExpect(MockMvcResultMatchers.jsonPath("$.email").value(customerDto.email))
             .andExpect(MockMvcResultMatchers.jsonPath("$.income").value(customerDto.income.toInt()))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.zipcode").value(customerDto.zipCode))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.zipCode").value(customerDto.zipCode))
             .andExpect(MockMvcResultMatchers.jsonPath("$.street").value(customerDto.street))
             .andDo(MockMvcResultHandlers.print())
     }
@@ -130,10 +130,11 @@ class CustomerControllerTest {
             .andExpect(MockMvcResultMatchers.jsonPath("$.lastName").value(customer.lastName))
             .andExpect(MockMvcResultMatchers.jsonPath("$.cpf").value(customer.cpf))
             .andExpect(MockMvcResultMatchers.jsonPath("$.email").value(customer.email))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.income").value(customer.income.toInt()))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.zipcode").value(customer.address.zipCode))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.income").value(customer.income))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.zipCode").value(customer.address.zipCode))
             .andExpect(MockMvcResultMatchers.jsonPath("$.street").value(customer.address.street))
             .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(customer.id))
+            .andDo(MockMvcResultHandlers.print())
     }
 
     @Test
@@ -214,7 +215,7 @@ class CustomerControllerTest {
             .andExpect(MockMvcResultMatchers.jsonPath("$.cpf").value(customer.cpf))
             .andExpect(MockMvcResultMatchers.jsonPath("$.email").value(customer.email))
             .andExpect(MockMvcResultMatchers.jsonPath("$.income").value(customerUpdateDto.income.toInt()))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.zipcode").value(customerUpdateDto.zipCode))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.zipCode").value(customerUpdateDto.zipCode))
             .andExpect(MockMvcResultMatchers.jsonPath("$.street").value(customerUpdateDto.street))
             .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(customer.id))
             .andDo(MockMvcResultHandlers.print())
@@ -252,7 +253,7 @@ class CustomerControllerTest {
         lastName: String = "Knust",
         cpf: String = "28475934625",
         email: String = "gabriel@email.com",
-        income: BigDecimal = BigDecimal.valueOf(1000.15),
+        income: BigDecimal = BigDecimal.valueOf(1000),
         password: String = "1234",
         zipCode: String = "000000",
         street: String = "Rua José, 123",
