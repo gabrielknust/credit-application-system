@@ -92,7 +92,7 @@ class CustomerControllerTest {
     }
 
     @Test
-    fun `should not save a customer with a empty field and return 400 status`(){
+    fun `should not save a customer with a empty first name and return 400 status`() {
         //given
         val customerDto: CustomerDto = builderCustomerDto(firstName = "")
         val valueAsString: String = objectMapper.writeValueAsString(customerDto)
@@ -111,7 +111,175 @@ class CustomerControllerTest {
                 MockMvcResultMatchers.jsonPath("$.exception")
                     .value("class org.springframework.web.bind.MethodArgumentNotValidException")
             )
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("Empty first name"))
+            .andDo(MockMvcResultHandlers.print())
+    }
+
+    @Test
+    fun `should not save a customer with a empty lastName and return 400 status`() {
+        //given
+        val customerDto: CustomerDto = builderCustomerDto(lastName = "")
+        val valueAsString: String = objectMapper.writeValueAsString(customerDto)
+        //when
+        //then
+        mockMvc.perform(
+            MockMvcRequestBuilders.post(URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(valueAsString)
+        )
+            .andExpect(MockMvcResultMatchers.status().isBadRequest)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Bad Request! Consult the documentation"))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.timestamp").exists())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(400))
+            .andExpect(
+                MockMvcResultMatchers.jsonPath("$.exception")
+                    .value("class org.springframework.web.bind.MethodArgumentNotValidException")
+            )
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("Empty last name"))
+            .andDo(MockMvcResultHandlers.print())
+    }
+
+    @Test
+    fun `should not save a customer with a empty cpf and return 400 status`() {
+        //given
+        val customerDto: CustomerDto = builderCustomerDto(cpf = "")
+        val valueAsString: String = objectMapper.writeValueAsString(customerDto)
+        //when
+        //then
+        mockMvc.perform(
+            MockMvcRequestBuilders.post(URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(valueAsString)
+        )
+            .andExpect(MockMvcResultMatchers.status().isBadRequest)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Bad Request! Consult the documentation"))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.timestamp").exists())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(400))
+            .andExpect(
+                MockMvcResultMatchers.jsonPath("$.exception")
+                    .value("class org.springframework.web.bind.MethodArgumentNotValidException")
+            )
             .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").isNotEmpty)
+            .andDo(MockMvcResultHandlers.print())
+    }
+
+    @Test
+    fun `should not save a customer with a empty zipCode and return 400 status`() {
+        //given
+        val customerDto: CustomerDto = builderCustomerDto(zipCode = "")
+        val valueAsString: String = objectMapper.writeValueAsString(customerDto)
+        //when
+        //then
+        mockMvc.perform(
+            MockMvcRequestBuilders.post(URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(valueAsString)
+        )
+            .andExpect(MockMvcResultMatchers.status().isBadRequest)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Bad Request! Consult the documentation"))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.timestamp").exists())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(400))
+            .andExpect(
+                MockMvcResultMatchers.jsonPath("$.exception")
+                    .value("class org.springframework.web.bind.MethodArgumentNotValidException")
+            )
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("Empty zip code"))
+            .andDo(MockMvcResultHandlers.print())
+    }
+
+    @Test
+    fun `should not save a customer with a empty email and return 400 status`() {
+        //given
+        val customerDto: CustomerDto = builderCustomerDto(email = "")
+        val valueAsString: String = objectMapper.writeValueAsString(customerDto)
+        //when
+        //then
+        mockMvc.perform(
+            MockMvcRequestBuilders.post(URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(valueAsString)
+        )
+            .andExpect(MockMvcResultMatchers.status().isBadRequest)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Bad Request! Consult the documentation"))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.timestamp").exists())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(400))
+            .andExpect(
+                MockMvcResultMatchers.jsonPath("$.exception")
+                    .value("class org.springframework.web.bind.MethodArgumentNotValidException")
+            )
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("Empty email"))
+            .andDo(MockMvcResultHandlers.print())
+    }
+
+    @Test
+    fun `should not save a customer with a empty password and return 400 status`() {
+        //given
+        val customerDto: CustomerDto = builderCustomerDto(password = "")
+        val valueAsString: String = objectMapper.writeValueAsString(customerDto)
+        //when
+        //then
+        mockMvc.perform(
+            MockMvcRequestBuilders.post(URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(valueAsString)
+        )
+            .andExpect(MockMvcResultMatchers.status().isBadRequest)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Bad Request! Consult the documentation"))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.timestamp").exists())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(400))
+            .andExpect(
+                MockMvcResultMatchers.jsonPath("$.exception")
+                    .value("class org.springframework.web.bind.MethodArgumentNotValidException")
+            )
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("Empty password"))
+            .andDo(MockMvcResultHandlers.print())
+    }
+
+    @Test
+    fun `should not save a customer with a empty street and return 400 status`() {
+        //given
+        val customerDto: CustomerDto = builderCustomerDto(street = "")
+        val valueAsString: String = objectMapper.writeValueAsString(customerDto)
+        //when
+        //then
+        mockMvc.perform(
+            MockMvcRequestBuilders.post(URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(valueAsString)
+        )
+            .andExpect(MockMvcResultMatchers.status().isBadRequest)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Bad Request! Consult the documentation"))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.timestamp").exists())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(400))
+            .andExpect(
+                MockMvcResultMatchers.jsonPath("$.exception")
+                    .value("class org.springframework.web.bind.MethodArgumentNotValidException")
+            )
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("Empty street"))
+            .andDo(MockMvcResultHandlers.print())
+    }
+
+    @Test
+    fun `should not save a customer with a invalid email and return 400 status`() {
+        //given
+        val customerDto: CustomerDto = builderCustomerDto(email = "invalidemail")
+        val valueAsString: String = objectMapper.writeValueAsString(customerDto)
+        //when
+        //then
+        mockMvc.perform(
+            MockMvcRequestBuilders.post(URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(valueAsString)
+        )
+            .andExpect(MockMvcResultMatchers.status().isBadRequest)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Bad Request! Consult the documentation"))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.timestamp").exists())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(400))
+            .andExpect(
+                MockMvcResultMatchers.jsonPath("$.exception")
+                    .value("class org.springframework.web.bind.MethodArgumentNotValidException")
+            )
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("Invalid email"))
             .andDo(MockMvcResultHandlers.print())
     }
 
@@ -175,7 +343,7 @@ class CustomerControllerTest {
     }
 
     @Test
-    fun `should not delete customer by id and return 400 status`() {
+    fun `should not delete customer by invalid id and return 400 status`() {
         //given
         val invalidId: Long = Random().nextLong()
         //when
@@ -245,6 +413,103 @@ class CustomerControllerTest {
             .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").isNotEmpty)
             .andDo(MockMvcResultHandlers.print())
     }
+    @Test
+    fun `should not update a customer with empty first name and return 400 status`() {
+        //given
+        val invalidId: Long = Random().nextLong()
+        val customerUpdateDto: CustomerUpdateDto = builderCustomerUpdateDto(firstName = "")
+        val valueAsString: String = objectMapper.writeValueAsString(customerUpdateDto)
+        //when
+        //then
+        mockMvc.perform(
+            MockMvcRequestBuilders.patch("$URL?customerId=$invalidId")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(valueAsString)
+        )
+            .andExpect(MockMvcResultMatchers.status().isBadRequest)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Bad Request! Consult the documentation"))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.timestamp").exists())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(400))
+            .andExpect(
+                MockMvcResultMatchers.jsonPath("$.exception")
+                    .value("class org.springframework.web.bind.MethodArgumentNotValidException")
+            )
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("Empty first name"))
+            .andDo(MockMvcResultHandlers.print())
+    }
+    @Test
+    fun `should not update a customer with empty last name and return 400 status`() {
+        //given
+        val invalidId: Long = Random().nextLong()
+        val customerUpdateDto: CustomerUpdateDto = builderCustomerUpdateDto(lastName = "")
+        val valueAsString: String = objectMapper.writeValueAsString(customerUpdateDto)
+        //when
+        //then
+        mockMvc.perform(
+            MockMvcRequestBuilders.patch("$URL?customerId=$invalidId")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(valueAsString)
+        )
+            .andExpect(MockMvcResultMatchers.status().isBadRequest)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Bad Request! Consult the documentation"))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.timestamp").exists())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(400))
+            .andExpect(
+                MockMvcResultMatchers.jsonPath("$.exception")
+                    .value("class org.springframework.web.bind.MethodArgumentNotValidException")
+            )
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("Empty last name"))
+            .andDo(MockMvcResultHandlers.print())
+    }
+
+    @Test
+    fun `should not update a customer with empty zip code and return 400 status`() {
+        //given
+        val invalidId: Long = Random().nextLong()
+        val customerUpdateDto: CustomerUpdateDto = builderCustomerUpdateDto(zipCode = "")
+        val valueAsString: String = objectMapper.writeValueAsString(customerUpdateDto)
+        //when
+        //then
+        mockMvc.perform(
+            MockMvcRequestBuilders.patch("$URL?customerId=$invalidId")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(valueAsString)
+        )
+            .andExpect(MockMvcResultMatchers.status().isBadRequest)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Bad Request! Consult the documentation"))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.timestamp").exists())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(400))
+            .andExpect(
+                MockMvcResultMatchers.jsonPath("$.exception")
+                    .value("class org.springframework.web.bind.MethodArgumentNotValidException")
+            )
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("Empty zip code"))
+            .andDo(MockMvcResultHandlers.print())
+    }
+    @Test
+    fun `should not update a customer with empty street and return 400 status`() {
+        //given
+        val invalidId: Long = Random().nextLong()
+        val customerUpdateDto: CustomerUpdateDto = builderCustomerUpdateDto(street = "")
+        val valueAsString: String = objectMapper.writeValueAsString(customerUpdateDto)
+        //when
+        //then
+        mockMvc.perform(
+            MockMvcRequestBuilders.patch("$URL?customerId=$invalidId")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(valueAsString)
+        )
+            .andExpect(MockMvcResultMatchers.status().isBadRequest)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Bad Request! Consult the documentation"))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.timestamp").exists())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(400))
+            .andExpect(
+                MockMvcResultMatchers.jsonPath("$.exception")
+                    .value("class org.springframework.web.bind.MethodArgumentNotValidException")
+            )
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("Empty street"))
+            .andDo(MockMvcResultHandlers.print())
+    }
 
 
 
@@ -253,7 +518,7 @@ class CustomerControllerTest {
         lastName: String = "Knust",
         cpf: String = "28475934625",
         email: String = "gabriel@email.com",
-        income: BigDecimal = BigDecimal.valueOf(1000),
+        income: BigDecimal? = BigDecimal.valueOf(1000),
         password: String = "1234",
         zipCode: String = "000000",
         street: String = "Rua José, 123",
@@ -262,7 +527,7 @@ class CustomerControllerTest {
         lastName = lastName,
         cpf = cpf,
         email = email,
-        income = income,
+        income = income!!,
         password = password,
         zipCode = zipCode,
         street = street

@@ -6,11 +6,11 @@ import me.dio.credit.application.system.model.Customer
 import java.math.BigDecimal
 
 data class CustomerUpdateDto(
-    @field:NotEmpty(message = "Invalid input") val firstName: String,
-    @field:NotEmpty(message = "Invalid input") val lastName: String,
-    @field:NotNull(message = "Invalid input") val income: BigDecimal,
-    @field:NotEmpty(message = "Invalid input") val zipCode: String,
-    @field:NotEmpty(message = "Invalid input") val street: String
+    @field:NotEmpty(message = "Empty first name") val firstName: String,
+    @field:NotEmpty(message = "Empty last name") val lastName: String,
+    @field:NotNull(message = "Invalid income") val income: BigDecimal,
+    @field:NotEmpty(message = "Empty zip code") val zipCode: String,
+    @field:NotEmpty(message = "Empty street") val street: String
 ){
     fun toEntity(customer: Customer) : Customer{
         customer.firstName = this.firstName
