@@ -103,7 +103,7 @@ class CreditControllerTest {
                 MockMvcResultMatchers.jsonPath("$.exception")
                     .value("class me.dio.credit.application.system.exception.BusinessException")
             )
-            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").isNotEmpty)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("Id $fakeId not found"))
             .andDo(MockMvcResultHandlers.print())
     }
 
@@ -128,7 +128,7 @@ class CreditControllerTest {
                 MockMvcResultMatchers.jsonPath("$.exception")
                     .value("class org.springframework.web.bind.MethodArgumentNotValidException")
             )
-            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").isNotEmpty)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("The minimum number of installments is 1"))
             .andDo(MockMvcResultHandlers.print())
     }
 
@@ -153,7 +153,7 @@ class CreditControllerTest {
                 MockMvcResultMatchers.jsonPath("$.exception")
                     .value("class org.springframework.web.bind.MethodArgumentNotValidException")
             )
-            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").isNotEmpty)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("The maximum number of installments is 48"))
             .andDo(MockMvcResultHandlers.print())
     }
 
@@ -178,7 +178,7 @@ class CreditControllerTest {
                 MockMvcResultMatchers.jsonPath("$.exception")
                     .value("class org.springframework.web.bind.MethodArgumentNotValidException")
             )
-            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").isNotEmpty)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("The date of first Installment must be on present or future"))
             .andDo(MockMvcResultHandlers.print())
     }
 
@@ -203,7 +203,7 @@ class CreditControllerTest {
                 MockMvcResultMatchers.jsonPath("$.exception")
                     .value("class org.springframework.web.bind.MethodArgumentNotValidException")
             )
-            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").isNotEmpty)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("The date of first Installment must be a maximum of 3 months from the start date"))
             .andDo(MockMvcResultHandlers.print())
     }
 
@@ -301,7 +301,7 @@ class CreditControllerTest {
                 MockMvcResultMatchers.jsonPath("$.exception")
                     .value("class java.lang.IllegalArgumentException")
             )
-            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").isNotEmpty)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("You don't have permission to acess this credit. Please contact the admins."))
             .andDo(MockMvcResultHandlers.print())
     }
 
