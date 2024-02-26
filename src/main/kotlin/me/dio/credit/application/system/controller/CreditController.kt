@@ -1,5 +1,8 @@
 package me.dio.credit.application.system.controller
 
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import me.dio.credit.application.system.dto.CreditDto
 import me.dio.credit.application.system.dto.CreditView
@@ -14,7 +17,24 @@ import java.util.stream.Collectors
 
 @RestController
 @RequestMapping("api/credits")
+@Tag(name = "Credit")
 class CreditController(private val creditService: CreditService) {
+
+    @Operation(
+        description = "This is the function to create a new credit.",
+        summary = "Create a credit for a customer.",
+        responses = [
+            ApiResponse(
+                description = "Created with sucess",
+                responseCode = "201",
+            ),
+            ApiResponse(
+                description = "Bad Request",
+                responseCode = "400"
+            )
+        ]
+
+    )
     @PostMapping
     fun saveCredit(@RequestBody @Valid creditDto: CreditDto): ResponseEntity<CreditView> {
         val credit: Credit = this.creditService.save(creditDto.toEntity())
@@ -22,6 +42,21 @@ class CreditController(private val creditService: CreditService) {
             .body(CreditView(credit))
     }
 
+    @Operation(
+        description = "This is the function to get a list containing all the credits of a customer.",
+        summary = "Get all credits from a customer by his id.",
+        responses = [
+            ApiResponse(
+                description = "Sucess",
+                responseCode = "200",
+            ),
+            ApiResponse(
+                description = "Bad Request",
+                responseCode = "400"
+            )
+        ]
+
+    )
     @GetMapping()
     fun findAllByCustomerId(@RequestParam(value = "customerId") customerId: Long): ResponseEntity<List<CreditViewList>> {
         return ResponseEntity.status(HttpStatus.OK).body(this.creditService.findAllByCustomer(customerId).stream()
@@ -29,6 +64,21 @@ class CreditController(private val creditService: CreditService) {
             .collect(Collectors.toList()))
     }
 
+    @Operation(
+        description = "This is the function to get a credit by his id. This function also needs the customer owner of the credit to return the right credit",
+        summary = "Get a credit by his id.",
+        responses = [
+            ApiResponse(
+                description = "Sucess",
+                responseCode = "200",
+            ),
+            ApiResponse(
+                description = "Bad Request",
+                responseCode = "400"
+            )
+        ]
+
+    )
     @GetMapping("/{creditId}")
     fun findByCreditCode(
         @RequestParam(value = "customerId") customerId: Long,
