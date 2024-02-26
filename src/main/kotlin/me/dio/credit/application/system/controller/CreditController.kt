@@ -26,7 +26,7 @@ class CreditController(private val creditService: CreditService,private val cust
         summary = "Create a credit for a customer.",
         responses = [
             ApiResponse(
-                description = "Created with sucess",
+                description = "Created with success",
                 responseCode = "201",
             ),
             ApiResponse(
@@ -48,7 +48,7 @@ class CreditController(private val creditService: CreditService,private val cust
         summary = "Get all credits from a customer by his id.",
         responses = [
             ApiResponse(
-                description = "Sucess",
+                description = "Success",
                 responseCode = "200",
             ),
             ApiResponse(
@@ -58,7 +58,7 @@ class CreditController(private val creditService: CreditService,private val cust
         ]
 
     )
-    @GetMapping()
+    @GetMapping
     fun findAllByCustomerId(@RequestParam(value = "customerId") customerId: Long): ResponseEntity<List<CreditViewList>> {
         this.customerService.findById(customerId)
         val creditViewList = this.creditService.findAllByCustomer(customerId).stream()
@@ -72,7 +72,7 @@ class CreditController(private val creditService: CreditService,private val cust
         summary = "Get a credit by his id.",
         responses = [
             ApiResponse(
-                description = "Sucess",
+                description = "Success",
                 responseCode = "200",
             ),
             ApiResponse(

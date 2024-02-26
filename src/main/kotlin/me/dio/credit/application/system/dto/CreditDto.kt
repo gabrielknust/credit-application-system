@@ -1,6 +1,6 @@
 package me.dio.credit.application.system.dto
 
-import com.example.customvalidator.validation.MaxMonths
+import me.dio.credit.application.system.model.MaxMonths
 import jakarta.validation.constraints.FutureOrPresent
 import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.Min

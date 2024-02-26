@@ -14,6 +14,5 @@ data class Credit(
     @Enumerated var status: Status = Status.IN_PROGRESS,
     @ManyToOne var customer: Customer? = null,
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long? = null
-) {
+)
 
-}

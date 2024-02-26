@@ -44,7 +44,7 @@ class CreditServiceTest {
     fun `should create credit`() {
         //given
         val fakeCredit: Credit = buildCredit()
-        val fakeId: Long = 1L
+        val fakeId = 1L
         every { customerService.findById(any()) } returns fakeCredit.customer!!
         every { creditRepository.save(any()) } returns fakeCredit
         //when
@@ -60,7 +60,7 @@ class CreditServiceTest {
     fun `should find all credits by customer`(){
         //given
         val fakeListOfCredit: List<Credit> = listOf(buildCredit())
-        val fakeId: Long = 1L
+        val fakeId= 1L
         every { creditRepository.findAllByCustomerId(fakeId) } returns fakeListOfCredit
         //when
         val actual: List<Credit> = creditService.findAllByCustomer(fakeId)
@@ -74,7 +74,7 @@ class CreditServiceTest {
     @Test
     fun `should find a credit for the code`(){
         //given
-        val fakeId: Long = 1L
+        val fakeId = 1L
         val fakeCreditCode: UUID = UUID.randomUUID()
         val fakeCredit: Credit = buildCredit(customer = Customer(id = fakeId))
         every { creditRepository.findByCreditCode(fakeCreditCode) } returns fakeCredit
@@ -89,7 +89,7 @@ class CreditServiceTest {
     @Test
     fun `should throw BusinessException for invalid credit code`(){
         //given
-        val fakeId: Long = 1L
+        val fakeId = 1L
         val fakeCreditCode: UUID = UUID.randomUUID()
         every { creditRepository.findByCreditCode(fakeCreditCode) } returns null
         //when
@@ -103,7 +103,7 @@ class CreditServiceTest {
     @Test
     fun `should throw IllegalArgumentException for invalid customer id`(){
         //given
-        val fakeId: Long = 1L
+        val fakeId = 1L
         val fakeCreditCode: UUID = UUID.randomUUID()
         val fakeCredit: Credit = buildCredit(customer = Customer(id = 2L))
         every { creditRepository.findByCreditCode(fakeCreditCode) } returns fakeCredit
@@ -111,7 +111,7 @@ class CreditServiceTest {
         //then
         Assertions.assertThatThrownBy { creditService.findByCreditCode(fakeId,fakeCreditCode) }
             .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("You don't have permission to acess this credit. Please contact the admins.")
+            .hasMessage("You don't have permission to access this credit. Please contact the admins.")
         verify(exactly = 1) { creditRepository.findByCreditCode(fakeCreditCode) }
     }
 

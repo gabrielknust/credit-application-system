@@ -23,7 +23,7 @@ class CustomerController(private val customerService: CustomerService) {
         summary = "Create a new customer.",
         responses = [
             ApiResponse(
-                description = "Created with sucess",
+                description = "Created with success",
                 responseCode = "201",
             ),
             ApiResponse(
@@ -48,7 +48,7 @@ class CustomerController(private val customerService: CustomerService) {
         summary = "Get a customer by his id.",
         responses = [
             ApiResponse(
-                description = "Sucess",
+                description = "Success",
                 responseCode = "200",
             ),
             ApiResponse(
@@ -88,7 +88,7 @@ class CustomerController(private val customerService: CustomerService) {
         summary = "Update a customer.",
         responses = [
             ApiResponse(
-                description = "Sucess",
+                description = "Success",
                 responseCode = "200",
             ),
             ApiResponse(
@@ -98,7 +98,7 @@ class CustomerController(private val customerService: CustomerService) {
         ]
 
     )
-    @PatchMapping()
+    @PatchMapping
     fun updateCustomer(
         @RequestParam(value = "customerId") id: Long,
         @RequestBody @Valid customerUpdateDto: CustomerUpdateDto

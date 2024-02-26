@@ -1,7 +1,8 @@
-package com.example.customvalidator.validation
+package me.dio.credit.application.system.model
 
 import jakarta.validation.ConstraintValidator
 import jakarta.validation.ConstraintValidatorContext
+import me.dio.credit.application.system.model.MaxMonths
 import java.time.LocalDate
 import kotlin.properties.Delegates
 

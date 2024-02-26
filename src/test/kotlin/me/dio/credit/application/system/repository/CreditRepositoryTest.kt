@@ -3,7 +3,6 @@ package me.dio.credit.application.system.repository
 import me.dio.credit.application.system.model.Address
 import me.dio.credit.application.system.model.Credit
 import me.dio.credit.application.system.model.Customer
-import me.dio.credit.application.system.model.Status
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

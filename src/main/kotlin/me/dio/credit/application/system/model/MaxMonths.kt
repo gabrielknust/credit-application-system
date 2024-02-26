@@ -1,4 +1,4 @@
-package com.example.customvalidator.validation
+package me.dio.credit.application.system.model
 
 import jakarta.validation.Constraint
 import jakarta.validation.Payload

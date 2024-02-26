@@ -24,7 +24,7 @@ class CreditService(private val creditRepository: CreditRepository, private val 
     override fun findByCreditCode(customerId: Long, creditCode: UUID): Credit {
         val credit: Credit = (this.creditRepository.findByCreditCode(creditCode)
             ?: throw BusinessException("Creditcode $creditCode not found"))
-        return if (credit.customer?.id == customerId) credit else throw IllegalArgumentException("You don't have permission to acess this credit. Please contact the admins.")
+        return if (credit.customer?.id == customerId) credit else throw IllegalArgumentException("You don't have permission to access this credit. Please contact the admins.")
     }
 
 }

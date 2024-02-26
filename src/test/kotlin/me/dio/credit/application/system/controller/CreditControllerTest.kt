@@ -307,7 +307,7 @@ class CreditControllerTest {
                 MockMvcResultMatchers.jsonPath("$.exception")
                     .value("class java.lang.IllegalArgumentException")
             )
-            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("You don't have permission to acess this credit. Please contact the admins."))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("You don't have permission to access this credit. Please contact the admins."))
             .andDo(MockMvcResultHandlers.print())
     }
 
