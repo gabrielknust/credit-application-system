@@ -18,7 +18,6 @@ class CreditService(private val creditRepository: CreditRepository, private val 
     }
 
     override fun findAllByCustomer(customerId: Long): List<Credit> {
-        customerService.findById(customerId)
         return this.creditRepository.findAllByCustomerId(customerId)
     }
 

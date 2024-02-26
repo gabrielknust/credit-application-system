@@ -9,6 +9,7 @@ import me.dio.credit.application.system.dto.CreditView
 import me.dio.credit.application.system.dto.CreditViewList
 import me.dio.credit.application.system.model.Credit
 import me.dio.credit.application.system.service.impl.CreditService
+import me.dio.credit.application.system.service.impl.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -18,7 +19,7 @@ import java.util.stream.Collectors
 @RestController
 @RequestMapping("api/credits")
 @Tag(name = "Credit")
-class CreditController(private val creditService: CreditService) {
+class CreditController(private val creditService: CreditService,private val customerService: CustomerService) {
 
     @Operation(
         description = "This is the function to create a new credit.",
@@ -59,9 +60,11 @@ class CreditController(private val creditService: CreditService) {
     )
     @GetMapping()
     fun findAllByCustomerId(@RequestParam(value = "customerId") customerId: Long): ResponseEntity<List<CreditViewList>> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.creditService.findAllByCustomer(customerId).stream()
+        this.customerService.findById(customerId)
+        val creditViewList = this.creditService.findAllByCustomer(customerId).stream()
             .map { credit: Credit -> CreditViewList(credit) }
-            .collect(Collectors.toList()))
+            .collect(Collectors.toList())
+        return ResponseEntity.status(HttpStatus.OK).body(creditViewList)
     }
 
     @Operation(

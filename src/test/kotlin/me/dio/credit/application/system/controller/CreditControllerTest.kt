@@ -232,7 +232,7 @@ class CreditControllerTest {
     }
 
     @Test
-    fun `should not find credits by a invalid costumer id and return 200 status with empty body`(){
+    fun `should not find credits by a invalid costumer id and return 400 status with empty body`(){
         //given
         val customer: Customer = customerRepository.save(builderCustomerDto().toEntity())
         val fakeId: Long = Random().nextLong()
@@ -244,9 +244,15 @@ class CreditControllerTest {
             MockMvcRequestBuilders.get("$URL?customerId=$fakeId")
                 .accept(MediaType.APPLICATION_JSON)
         )
-            .andExpect(MockMvcResultMatchers.status().isOk)
-            .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(MockMvcResultMatchers.jsonPath("$").isEmpty)
+            .andExpect(MockMvcResultMatchers.status().isBadRequest)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Bad Request! Consult the documentation"))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.timestamp").exists())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.status").value(400))
+            .andExpect(
+                MockMvcResultMatchers.jsonPath("$.exception")
+                    .value("class me.dio.credit.application.system.exception.BusinessException")
+            )
+            .andExpect(MockMvcResultMatchers.jsonPath("$.details[*]").value("Id $fakeId not found"))
             .andDo(MockMvcResultHandlers.print())
     }
 
